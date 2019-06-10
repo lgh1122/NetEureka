@@ -1,0 +1,58 @@
+
+
+plugins {
+	id 'org.springframework.boot' version '2.1.2.RELEASE'
+	id 'com.bmuschko.docker-spring-boot-application' version '4.9.0'
+	id 'java'
+}
+repositories {
+	mavenCentral()
+}
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'com.bmuschko.docker-spring-boot-application'
+
+//apply plugin: 'com.bmuschko.docker-spring-boot-application'
+group = 'com.lgh'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+ext{
+	docker_ports=[8708]
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+docker {
+	dockerCreateDockerfile {
+		environmentVariable('LANG', 'C.UTF-8')
+		defaultCommand     '-Dfile.encoding=UTF-8'
+	}
+
+//	try {
+//		registryCredentials {
+//			url = 'https://docker.laiyue.online'
+//			username = REPO_USER
+//			password = REPO_PWD
+//		}
+//	} catch (ex) {
+//		throw new InvalidUserDataException("You should define REPO_USER and REPO_PWD in gradle.properties.")
+//	}
+
+	springBootApplication {
+		baseImage = 'openjdk:8-alpine'
+		afterEvaluate {
+			ports = docker_ports;
+//			tag = "docker.laiyue.online/" + project.group.replaceAll("\\.", "/") + "/" + project.name + ":" + project.version
+			tag = " lghneteureka:" + project.version
+		}
+	}
+}
