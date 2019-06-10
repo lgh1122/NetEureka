@@ -44,7 +44,6 @@ docker {
 //			password = REPO_PWD
 		}
 	} catch (ex) {
-		throw new InvalidUserDataException("You should define REPO_USER and REPO_PWD in gradle.properties.")
 	}
 
 	springBootApplication {
