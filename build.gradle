@@ -37,15 +37,15 @@ docker {
 		defaultCommand     '-Dfile.encoding=UTF-8'
 	}
 
-//	try {
-//		registryCredentials {
-//			url = 'https://docker.laiyue.online'
+	try {
+		registryCredentials {
+			url = 'http://192.168.10.129:5000'
 //			username = REPO_USER
 //			password = REPO_PWD
-//		}
-//	} catch (ex) {
-//		throw new InvalidUserDataException("You should define REPO_USER and REPO_PWD in gradle.properties.")
-//	}
+		}
+	} catch (ex) {
+		throw new InvalidUserDataException("You should define REPO_USER and REPO_PWD in gradle.properties.")
+	}
 
 	springBootApplication {
 		baseImage = 'openjdk:8-alpine'
