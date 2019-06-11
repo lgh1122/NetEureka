@@ -45,7 +45,7 @@ docker {
 		baseImage = 'openjdk:8-jdk-alpine'
 		afterEvaluate {
 			ports = docker_ports;
-			tag = "192.168.10.129:5000/neteureka:" + project.version
+			tag = "192.168.10.129:5000/"  + project.group.replaceAll("\\.", "/") + "/" + project.name.toLowerCase() + ":" + project.version
 //			tag = "neteureka:" + project.version
 		}
 	}
