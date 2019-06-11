@@ -40,7 +40,7 @@ docker {
 
 	registryCredentials {
 		url = 'http://192.168.10.129:5000'
-	}K
+	}
 	springBootApplication {
 		baseImage = 'openjdk:8-jdk-alpine'
 		afterEvaluate {
