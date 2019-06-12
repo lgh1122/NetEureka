@@ -14,7 +14,9 @@ public class UserController {
     @ResponseBody
     public User sayHello(){
         final User user = new User();
-        user.setName("Tom");
+        user.setName("李四");
         return user;
     }
+
+
 }
